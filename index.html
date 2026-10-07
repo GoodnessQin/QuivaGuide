@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiva Walkthrough Guides: Creators and Collectors</title>
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF8F5;
+  --surface:#FFFFFF;
+  --ink:#141414;
+  --muted:#5C5C5C;
+  --line:#141414;
+  --soft-line:#E4DFD8;
+  --violet:#C8560D;
+  --violet-text:#B34A0A;
+  --violet-tint:#FBE9DC;
+  --butter:#F3D9C4;
+  --mint:#F0EEE9;
+  --p1:#FBE9DC;
+  --shadow:#141414;
+  --display:"Bricolage Grotesque","Trebuchet MS","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141414;--surface:#1F1F1F;--ink:#F5F1EC;--muted:#C9C2B8;--line:#E88A3D;--soft-line:#3A3A3A;
+    --violet-text:#F0964A;--violet-tint:#2E2115;--p1:#2E2115;--shadow:#000000;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141414;--surface:#1F1F1F;--ink:#F5F1EC;--muted:#C9C2B8;--line:#E88A3D;--soft-line:#3A3A3A;
+  --violet-text:#F0964A;--violet-tint:#2E2115;--p1:#2E2115;--shadow:#000000;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 5.5rem);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);color:var(--ink);line-height:1.1;margin:0;letter-spacing:-.01em}
+h1{font-weight:800;font-size:clamp(2.3rem,5.2vw,3.7rem);letter-spacing:-.025em}
+h2{font-weight:800;font-size:clamp(1.65rem,3.2vw,2.15rem);margin-bottom:1rem}
+h3{font-weight:600;font-size:1.3rem;margin:2rem 0 .6rem}
+p{margin:0 0 1rem}
+a{color:var(--violet-text)}
+strong{font-weight:600}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.6rem 1rem;z-index:100}
+.skip:focus{left:1rem;top:calc(env(safe-area-inset-top,0px) + .5rem)}
+
+/* Top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:2px solid var(--line)}
+.top-in{max-width:74rem;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.65rem;font-family:var(--display);font-weight:800;font-size:1.35rem;text-decoration:none;color:var(--ink)}
+.brand-mark{display:flex;align-items:center;height:2.15rem;padding:.3rem .6rem;background:#141414;border-radius:8px;flex:none}
+.brand-mark img{height:100%;width:auto;display:block}
+.brand small{font-family:var(--body);font-weight:500;font-size:.9rem;color:var(--muted)}
+.tabs{display:flex;gap:.4rem;margin-left:auto;flex-wrap:wrap}
+.tab{font:600 .95rem var(--body);background:transparent;color:var(--ink);border:2px solid var(--line);border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{background:var(--violet);border-color:var(--violet);color:#fff}}
+:root[data-theme="dark"] .tab[aria-selected="true"]{background:var(--violet);border-color:var(--violet);color:#fff}
+
+/* Layout */
+.layout{max-width:74rem;margin:0 auto;padding:0 1.25rem 5rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3.5rem}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 5rem);align-self:start;max-height:calc(100vh - 7rem);overflow:auto;padding:2rem 0 1rem;font-size:.93rem}
+.toc-title{font-family:var(--display);font-weight:600;margin:0 0 .6rem;font-size:1rem}
+.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--soft-line)}
+.toc a{display:block;padding:.3rem 0 .3rem .9rem;margin-left:-2px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;line-height:1.35}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--ink);border-left-color:var(--violet);font-weight:600}
+.toc-m{display:none;margin:1.25rem 0 0;border:2px solid var(--line);border-radius:12px;background:var(--surface)}
+.toc-m summary{cursor:pointer;padding:.75rem 1rem;font-weight:600}
+.toc-m ol{list-style:none;margin:0;padding:0 1rem 1rem}
+.toc-m a{display:block;padding:.35rem 0;text-decoration:none}
+main{min-width:0;max-width:50rem}
+.guide[hidden]{display:none}
+
+/* Hero */
+.hero{padding:3rem 0 2.5rem}
+.hero .lede{font-size:1.25rem;line-height:1.55;color:var(--muted);max-width:40rem;margin:1.25rem 0 2rem}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));gap:.9rem}
+.panel{border:3px solid var(--line);border-radius:6px;padding:1rem 1rem 1.15rem;box-shadow:5px 5px 0 var(--shadow);display:flex;flex-direction:column;gap:.35rem;min-height:11rem}
+.panel .n{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1}
+.panel h3{margin:0;font-size:1.3rem;color:inherit}
+.panel p{margin:0;font-size:.95rem;line-height:1.45}
+.pn1{background:var(--p1);color:var(--ink)}
+.pn2{background:var(--violet);color:#fff}
+.pn2 h3{color:#fff}
+.pn3{background:var(--butter);color:#141414}
+.pn3 h3{color:#141414}
+.pn4{background:var(--mint);color:#141414}
+.pn4 h3{color:#141414}
+.audience{margin-top:1.75rem;color:var(--muted);font-size:.98rem}
+
+/* Chapters */
+.chapter{padding:3rem 0 .5rem;border-top:1px solid var(--soft-line)}
+.chapter>.intro{font-size:1.15rem;color:var(--muted)}
+ul,ol{padding-left:1.25rem;margin:0 0 1rem}
+li{margin:.3rem 0}
+.steps{list-style:none;padding:0;counter-reset:s;margin:1.25rem 0 1.5rem}
+.steps>li{counter-increment:s;position:relative;padding:0 0 1.15rem 3.2rem;margin:0}
+.steps>li::before{content:counter(s);position:absolute;left:0;top:-.1rem;width:2.15rem;height:2.15rem;border:2px solid var(--line);border-radius:50%;background:var(--surface);display:grid;place-items:center;font:800 1rem var(--display)}
+.steps>li::after{content:"";position:absolute;left:1.07rem;top:2.2rem;bottom:.15rem;width:2px;background:var(--soft-line)}
+.steps>li:last-child::after{display:none}
+.steps>li>strong:first-child{display:block;font-family:var(--display);font-size:1.12rem;font-weight:600;margin-bottom:.1rem}
+.steps p{margin:0 0 .4rem}
+
+/* Caption box: irreversible actions */
+.caption{background:var(--butter);color:#141414;border:3px solid var(--line);border-radius:4px;padding:1rem 1.15rem 1.05rem;margin:1.5rem 0;box-shadow:5px 5px 0 var(--shadow)}
+.caption strong.h{display:block;font-family:var(--display);font-weight:800;font-size:1.15rem;margin-bottom:.25rem}
+.caption p{margin:0 0 .5rem}
+.caption p:last-child,.caption ul:last-child{margin-bottom:0}
+.caption a{color:#B34A0A}
+/* Tip bubble */
+.bubble{position:relative;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:.9rem 1.15rem;margin:1.5rem 0 1.75rem}
+.bubble::after{content:"";position:absolute;left:1.6rem;bottom:-12px;width:20px;height:20px;background:var(--surface);border-right:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg) skew(8deg,8deg)}
+.bubble p{margin:0}
+.bubble p+p{margin-top:.5rem}
+
+/* Tables */
+.tblwrap{overflow-x:auto;margin:1.25rem 0 1.75rem;border:2px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.97rem}
+th,td{text-align:left;vertical-align:top;padding:.7rem .9rem;border-bottom:1px solid var(--soft-line)}
+th{font-family:var(--display);font-weight:600;font-size:1rem;background:var(--violet-tint);border-bottom:2px solid var(--line)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.tag{display:inline-block;font-size:.85rem;font-weight:600;border:2px solid var(--line);border-radius:999px;padding:.05rem .65rem;background:var(--surface);white-space:nowrap}
+.tag.y{background:var(--butter);color:#141414}
+.tag.g{background:var(--mint);color:#141414}
+.tag.v{background:var(--violet);color:#fff;border-color:var(--violet)}
+
+/* Two-up compare */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;margin:1.25rem 0 1.75rem}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:1.1rem 1.2rem}
+.card h3{margin:0 0 .4rem;font-size:1.2rem}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+
+/* Mock modal */
+.mock{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:1.25rem;margin:1.5rem 0 1.75rem;max-width:32rem;box-shadow:6px 6px 0 var(--shadow)}
+.mock h4{font-family:var(--display);font-weight:800;font-size:1.15rem;margin:0 0 .5rem}
+.mock ul{margin:.25rem 0 .9rem}
+.mock label{display:flex;gap:.6rem;align-items:flex-start;margin:.5rem 0;cursor:pointer;font-size:.98rem;line-height:1.4}
+.mock input{margin-top:.2rem;width:1.1rem;height:1.1rem;accent-color:var(--violet);flex:none}
+.mock button{margin-top:.9rem;font:600 1rem var(--body);background:var(--violet);color:#fff;border:0;border-radius:8px;padding:.7rem 1.4rem;cursor:pointer}
+.mock button:disabled{background:var(--soft-line);color:var(--muted);cursor:not-allowed}
+.mock-cap{font-size:.88rem;color:var(--muted);margin:-.9rem 0 1.75rem}
+
+/* Definition list */
+.gl{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:0;margin:1.5rem 0 0;border:2px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.gl dt,.gl dd{margin:0;padding:.8rem 1rem;border-bottom:1px solid var(--soft-line)}
+.gl dt{font-family:var(--display);font-weight:600;background:var(--violet-tint)}
+.gl dt:last-of-type,.gl dd:last-of-type{border-bottom:0}
+.hint{color:var(--muted);font-size:.95rem}
+.foot{margin-top:4rem;padding-top:1.5rem;border-top:2px solid var(--line);color:var(--muted);font-size:.93rem}
+
+@media (max-width:60rem){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{display:none}
+  .toc-m{display:block}
+  .top-in{gap:.75rem}
+  .tabs{margin-left:0;width:100%}
+  .gl{grid-template-columns:1fr}
+  .gl dt{border-bottom:0;padding-bottom:.2rem}
+  .gl dd{padding-top:.2rem}
+}
+@media print{
+  .top,.toc,.toc-m{display:none}
+  .layout{display:block}
+  .panel,.caption,.mock{box-shadow:none}
+  .chapter{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#creators" data-tab="creators" aria-label="Quiva walkthrough guides">
+      <span class="brand-mark"><img src="data:image/png;base64,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" alt="Quiva" /></span>
+      <small>Walkthrough guides</small>
+    </a>
+    <div class="tabs" role="tablist" aria-label="Choose a guide">
+      <button class="tab" role="tab" id="t-creators" aria-controls="g-creators" aria-selected="true" data-tab="creators">For creators</button>
+      <button class="tab" role="tab" id="t-collectors" aria-controls="g-collectors" aria-selected="false" data-tab="collectors">For collectors</button>
+      <button class="tab" role="tab" id="t-glossary" aria-controls="g-glossary" aria-selected="false" data-tab="glossary">Plain-language glossary</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout" id="content">
+<aside class="toc" aria-label="On this page"><p class="toc-title">In this guide</p><ol id="toc"></ol></aside>
+<main>
+<details class="toc-m"><summary>In this guide</summary><ol id="toc-m"></ol></details>
+
+<!-- ====================================================== -->
+<!-- CREATOR GUIDE -->
+<!-- ====================================================== -->
+<div class="guide" id="g-creators" role="tabpanel" aria-labelledby="t-creators">
+
+<section class="hero">
+  <h1>Publish your comic once. Get paid every time it changes hands.</h1>
+  <p class="lede">This guide walks you through ComicPad, Quiva's creator studio, from your first blank canvas to your first sale. You don't need any blockchain experience. At every step we tell you what is happening, whether it can be undone, and what comes next.</p>
+  <div class="strip" role="list">
+    <div class="panel pn1" role="listitem"><span class="n">1</span><h3>Create</h3><p>Build your collection, episodes, and art inside ComicPad. Nothing is permanent yet.</p></div>
+    <div class="panel pn2" role="listitem"><span class="n">2</span><h3>Publish</h3><p>Record your work on Hedera so ownership is permanently yours.</p></div>
+    <div class="panel pn3" role="listitem"><span class="n">3</span><h3>Sell</h3><p>List an episode for steady sales, or launch a drop for a big moment.</p></div>
+    <div class="panel pn4" role="listitem"><span class="n">4</span><h3>Earn</h3><p>Get paid on every sale, plus a royalty every time a copy is resold.</p></div>
+  </div>
+  <p class="audience">Written for comic and manga creators, artists, writers, and studio teams who are new to Web3.</p>
+</section>
+
+<section class="chapter" id="c-first">
+  <h2>Three ideas to know first</h2>
+  <p class="intro">Almost everything in ComicPad follows from these three ideas. Once they click, the rest of the studio feels familiar.</p>
+  <div class="two">
+    <div class="card"><h3>Your wallet is your studio key</h3><p>A wallet is a secure account that proves you own your work and receives your payments. It is how ComicPad knows you are you, so there is no password to create or forget. Quiva works with Hedera-compatible wallets such as HashPack and Blade.</p></div>
+    <div class="card"><h3>Everything starts with a Collection</h3><p>A Collection is your comic or manga title, like <em>Galactic Ronin</em>. It holds all of your Episodes. Even if you only have one chapter, it lives inside a Collection.</p></div>
+  </div>
+  <div class="card">
+    <h3>Some actions are permanent, and we always warn you first</h3>
+    <p>Drafts are flexible. Publishing on-chain, listing on the marketplace, and publishing a drop are permanent. Before each one you will see a plain-language warning and be asked to tick a box and confirm. Nothing permanent ever happens by accident.</p>
+  </div>
+</section>
+
+<section class="chapter" id="c-words">
+  <h2>The five words you'll see</h2>
+  <p class="intro">Quiva uses five words very deliberately. Each one means exactly one thing, everywhere in the product.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Word</th><th>What it means</th><th>Who does it</th></tr></thead>
+    <tbody>
+      <tr><td>Create</td><td>Build your content inside ComicPad. This happens off-chain, so it is private to you and fully editable.</td><td>You</td></tr>
+      <tr><td>Publish (on-chain)</td><td>Record your ownership and story details permanently on Hedera, the network Quiva is built on.</td><td>You</td></tr>
+      <tr><td>List</td><td>Put a published episode on the marketplace for sale at a fixed price, available any time.</td><td>You</td></tr>
+      <tr><td>Drop</td><td>A sale campaign with a schedule or rules, such as a whitelist, a countdown, or a falling price.</td><td>You</td></tr>
+      <tr><td>Mint</td><td>The moment a reader buys a copy and receives it in their wallet.</td><td>Your readers</td></tr>
+    </tbody></table></div>
+  <div class="bubble"><p><strong>Tip.</strong> Creators never "mint to the marketplace." You <strong>publish</strong>, then you <strong>list</strong> or <strong>create a drop</strong>. Your readers <strong>mint</strong> when they buy.</p></div>
+</section>
+
+<section class="chapter" id="c-connect">
+  <h2>Connect your wallet</h2>
+  <p class="intro">This is the only setup required. Until a wallet is connected, the dashboard, creation tools, publishing, listings, and drops all stay locked.</p>
+  <ol class="steps">
+    <li><strong>Open ComicPad and select Connect Wallet.</strong><p>You will see the Quiva welcome screen: "Connect your wallet to access ComicPad and start creating."</p></li>
+    <li><strong>Choose your wallet.</strong><p>Pick a Hedera-compatible wallet. Your wallet opens a small window asking you to approve the connection.</p></li>
+    <li><strong>Approve the connection in your wallet.</strong><p>Approving a connection only lets Quiva see your public address. It does not move any money.</p></li>
+    <li><strong>You land in Quiva Studio.</strong><p>As a first-time creator you will see friendly empty states across the dashboard, each pointing to your next action.</p></li>
+  </ol>
+  <h3>If the connection doesn't work</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>What you see</th><th>What it means</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>"Wallet connection cancelled. Please try again."</td><td>The request was declined or closed in your wallet.</td><td>Select Connect Wallet again and approve the request.</td></tr>
+      <tr><td>"This wallet is not supported. Please use a Hedera-compatible wallet."</td><td>The wallet you chose doesn't work with Hedera.</td><td>Use a Hedera wallet such as HashPack or Blade.</td></tr>
+      <tr><td>"Wrong network detected. Switch to Hedera to continue."</td><td>Your wallet is pointed at a different network.</td><td>Open your wallet's network settings and switch to Hedera.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section class="chapter" id="c-tour">
+  <h2>Your ComicPad dashboard</h2>
+  <p class="intro">Quiva Studio is the ComicPad dashboard, your home base for everything you create. When you arrive you'll see a "Welcome Creator!" greeting and the line "Let's build something epic."</p>
+  <h3>The top bar</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Item</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Marketplace (back arrow)</td><td>Takes you back to the Quiva Marketplace, where fans browse and buy.</td></tr>
+      <tr><td>Notification bell</td><td>Shows alerts about your activity. A red number tells you how many are new.</td></tr>
+      <tr><td>Hedera badge</td><td>Confirms you are connected to the Hedera network.</td></tr>
+      <tr><td>Wallet address menu</td><td>Shows your connected wallet in short form. Open it for your account options.</td></tr>
+    </tbody></table></div>
+  <h3>The left sidebar</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Item</th><th>What it's for</th></tr></thead>
+    <tbody>
+      <tr><td>Quiva Studio</td><td>Your dashboard home.</td></tr>
+      <tr><td>Collections</td><td>All of your collections and the episodes inside them.</td></tr>
+      <tr><td>Earnings</td><td>Your income from primary sales and secondary royalties.</td></tr>
+      <tr><td>Create New Comic (button)</td><td>A shortcut to start new work from anywhere in the studio.</td></tr>
+    </tbody></table></div>
+  <h3>The main screen</h3>
+  <p>The headline reads "Create. Publish. Launch. Earn without blockchain complexity," with the line "Your all-in-one studio for comic creation, collections, and drops on Quiva" beneath it. Two cards start your work:</p>
+  <div class="two">
+    <div class="card"><h3>Create Amazing Art</h3><p>A drawing and design tool for pages, covers, posters, and promo art. Marked "Coming Soon" — not yet available.</p></div>
+    <div class="card"><h3>Create / Upload</h3><p>"Organize your story into a collectible universe." Select Create Collection to begin.</p></div>
+  </div>
+  <div class="bubble"><p><strong>Tip.</strong> The rule to remember: you must create a Collection before you can add episodes, list them, or launch a drop.</p></div>
+</section>
+
+<section class="chapter" id="c-collection">
+  <h2>Step 1: Create your collection</h2>
+  <p class="intro">A Collection is your full comic or manga title. On other marketplaces this is called a Collection. Every episode, listing, and drop you make will live inside one.</p>
+  <ol class="steps">
+    <li><strong>Select Create Collection.</strong><p>From the Studio dashboard, or from My Comics.</p></li>
+    <li><strong>Fill in your Collection details.</strong><p>See the table below.</p></li>
+    <li><strong>Save as a draft, or publish the Collection page.</strong><p>Draft keeps it private. Published makes the Collection page live at <em>quiva.com/collection/your-collection-name</em>.</p></li>
+    <li><strong>You land on an empty Episode grid.</strong><p>The button "Upload New Episode +" takes you to Step 2.</p></li>
+  </ol>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Field</th><th>What to enter</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Collection title</td><td>The name of your comic or manga.</td><td>Must be unique across Quiva. Example: <em>Blood Moon Academy</em>.</td></tr>
+      <tr><td>Banner image</td><td>Your Collection cover art.</td><td>Required. Choose from your saved assets or upload one. It's optimized for both mobile and desktop.</td></tr>
+      <tr><td>Short description</td><td>The lore or bio of your world.</td><td>Readers see this first, so hook them.</td></tr>
+      <tr><td>Genre tags</td><td>Action, Romance, Sci-fi, and so on.</td><td>Helps readers discover you.</td></tr>
+      <tr><td>Collaborators</td><td>Usernames of co-creators or artists.</td><td>Optional. Shown on your Collection, Episode, and Drop pages.</td></tr>
+      <tr><td>Creator profile</td><td>Filled in for you.</td><td>Pulled from your Profile.</td></tr>
+    </tbody></table></div>
+  <h3>Rules that keep your catalogue clean</h3>
+  <ul>
+    <li>All Episodes in a Collection must belong together: the same story universe, the same IP, and the same creator or approved collaborators.</li>
+    <li>You can't add Episodes without a Collection.</li>
+    <li>Duplicate titles are rejected: "A collection with this title already exists."</li>
+    <li>A missing banner is rejected: "Banner is required."</li>
+  </ul>
+  <div class="bubble"><p><strong>Tip.</strong> Your title, banner, and collaborators become permanent when you publish on-chain in Step 3. Take a moment to get them exactly right while the Collection is still a draft.</p></div>
+</section>
+
+<section class="chapter" id="c-episode">
+  <h2>Step 2: Create an episode</h2>
+  <p class="intro">An Episode is a single chapter of your Collection. It's what your readers will read, mint, collect, and trade.</p>
+  <ol class="steps">
+    <li><strong>Open your Collection and select Upload New Episode +.</strong></li>
+    <li><strong>Add your episode details and files.</strong><p>See the table below. Files upload in a batch, and you can reorder pages before saving.</p></li>
+    <li><strong>Review the automatic preview.</strong><p>ComicPad creates a 3-page preview so readers can sample your work before they buy.</p></li>
+    <li><strong>Save as a draft, or publish it in ComicPad.</strong><p>You will land on your new Episode Detail Page, and the Episode appears in your Collection grid.</p></li>
+  </ol>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Field</th><th>What to enter</th></tr></thead>
+    <tbody>
+      <tr><td>Episode title</td><td>For example, <em>Starfall</em>.</td></tr>
+      <tr><td>Episode number</td><td>The chapter's place in the sequence.</td></tr>
+      <tr><td>Thumbnail</td><td>The image shown on your Collection grid.</td></tr>
+      <tr><td>Content files</td><td>A PDF, a JPG sequence, or a PNG sequence. You may add a motion version (MP4 or GIF) as an extra.</td></tr>
+      <tr><td>Description</td><td>Optional. A short summary of the chapter.</td></tr>
+      <tr><td>Maturity rating</td><td>Tells readers what to expect.</td></tr>
+      <tr><td>Collaborators</td><td>Optional. Usernames of anyone who worked on this chapter.</td></tr>
+    </tbody></table></div>
+  <div class="caption">
+    <strong class="h">Where your Episode stands right now</strong>
+    <p>At this point your Episode is <strong>off-chain</strong>. It's visible inside ComicPad, but it is not tradable and not on the marketplace. Nothing permanent has happened yet.</p>
+  </div>
+  <h3>If your upload is rejected</h3>
+  <ul>
+    <li>"Upload episode content." means you haven't added any files yet.</li>
+    <li>"File format not supported." means the file isn't a PDF, JPG, PNG, MP4, or GIF. Export it in a supported format and upload again.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="c-publish">
+  <h2>Step 3: Publish on-chain</h2>
+  <p class="intro">This is the moment your comic becomes permanently, verifiably yours.</p>
+  <h3>What "on-chain" means, in plain words</h3>
+  <p>Think of it as registering your work with a public, tamper-proof record book that no company can edit or erase, including Quiva. That record book is Hedera, a public network. Publishing writes your Collection and Episode details there, stamped with the exact date and time, and assigns ownership to your wallet.</p>
+  <p>Your page files are stored separately on IPFS through Pinata, a network of storage servers spread around the world. This means your comic doesn't depend on any single Quiva server, and every file has a unique fingerprint, so any tampering would be detected.</p>
+  <ol class="steps">
+    <li><strong>Open your Episode and select Publish On-Chain.</strong></li>
+    <li><strong>Read the warning and tick the confirmation box.</strong><p>The button stays disabled until you do.</p></li>
+    <li><strong>Confirm in your wallet.</strong><p>Your wallet may ask you to approve the transaction. Hedera network fees are very small.</p></li>
+    <li><strong>Done.</strong><p>Your Collection and Episode metadata are on Hedera, ownership is assigned to your wallet, and the Episode appears in your ComicPad Library.</p></li>
+  </ol>
+  <div class="caption">
+    <strong class="h">This action is permanent</strong>
+    <p>You are about to publish this Episode to Hedera. This action is permanent and cannot be reversed.</p>
+    <p>Publishing on-chain does <strong>not</strong> put your Episode on sale. After publishing, you still need to List it or create a Drop.</p>
+  </div>
+  <p>Here is how the confirmation looks. Try ticking the box:</p>
+  <div class="mock" data-mock>
+    <h4>Publish this Episode on-chain?</h4>
+    <p>You are about to publish this Episode to Hedera. This action is permanent and cannot be reversed.</p>
+    <label><input type="checkbox"> I understand this action is irreversible.</label>
+    <button type="button" disabled>Publish On-Chain</button>
+  </div>
+  <p class="mock-cap">An illustration of the confirmation step. Buttons stay disabled until every box is ticked.</p>
+  <p>If you decline the request in your wallet, you will see a friendly "transaction rejected" message. Nothing was published, and you can try again whenever you're ready.</p>
+</section>
+
+<section class="chapter" id="c-sell">
+  <h2>Step 4: Choose how to sell</h2>
+  <p class="intro">Once published, an Episode can be sold in two ways. Both lead to the same result: readers mint copies, you earn from every primary sale, and your copies can be traded on the secondary market where you keep earning royalties.</p>
+  <div class="two">
+    <div class="card"><h3>List on the marketplace</h3><p>Always available, at a fixed price. Best for steady, ongoing sales of a back catalogue or a chapter you want to keep available.</p><p class="hint">You set: rarity, supply, price, and max per wallet.</p></div>
+    <div class="card"><h3>Create a drop</h3><p>A sale with a schedule or rules. Best for launches where you want hype, scarcity, and momentum.</p><p class="hint">You set: everything above, plus a sale type and timing.</p></div>
+  </div>
+  <h3>Rarity tiers: how many copies can exist</h3>
+  <p>Every Episode can be sold in up to three tiers, called rarities. Rarity controls the <strong>maximum number of copies</strong>, not the price. You choose the price yourself.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Rarity</th><th>Copies you can create</th><th>Best for</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag y">Legendary</span></td><td>1 to 5,000</td><td>Your most collectible edition. Highest scarcity, and copies are serial-numbered.</td></tr>
+      <tr><td><span class="tag v">Epic</span></td><td>1 to 8,000</td><td>Dedicated fans and collectors.</td></tr>
+      <tr><td><span class="tag g">Common</span></td><td>Unlimited</td><td>Maximum reach. Anyone can own it.</td></tr>
+    </tbody></table></div>
+  <div class="caption">
+    <strong class="h">Supply limits are permanent</strong>
+    <p>Once a listing or drop is published, its supply cannot be changed. This is the promise your collectors rely on, so choose your numbers carefully.</p>
+  </div>
+  <p>Each rarity is set up separately. If you want to sell an Episode as both Legendary and Common, you create one listing or drop for each.</p>
+</section>
+
+<section class="chapter" id="c-list">
+  <h2>Option A: List on the marketplace</h2>
+  <p class="intro">Use this to sell an Episode directly, without running a campaign. As soon as you list, readers can mint instantly.</p>
+  <ol class="steps">
+    <li><strong>Open a published Episode and select List on Marketplace.</strong></li>
+    <li><strong>Choose the rarity.</strong><p>Legendary, Epic, or Common.</p></li>
+    <li><strong>Set the total supply.</strong><p>Stay within the limit for your chosen rarity.</p></li>
+    <li><strong>Set the price in HBAR.</strong><p>HBAR is the digital currency used on Hedera. The price shown to readers is per copy.</p></li>
+    <li><strong>Set the maximum per wallet.</strong><p>This stops one person from buying up all your copies.</p></li>
+    <li><strong>Review, tick the confirmation, and list.</strong><p>Once listed, the item becomes tradable and can't be undone.</p></li>
+  </ol>
+  <h3>What happens next</h3>
+  <ul>
+    <li>Your Episode becomes purchasable straight away.</li>
+    <li>Readers can mint instantly.</li>
+    <li>Secondary trading is enabled, so you begin earning royalties on resales.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="c-drop">
+  <h2>Option B: Create a drop</h2>
+  <p class="intro">A drop is a sale event with its own page, countdown, and rules. You build it in six short steps.</p>
+
+  <h3>E.0 Choose the Episode and rarity</h3>
+  <p>Pick the Episode from your list, then choose Legendary, Epic, or Common. Each rarity is its own drop.</p>
+
+  <h3>E.1 Set the sale details</h3>
+  <ul>
+    <li><strong>Supply.</strong> How many copies this drop offers, for example 5,000.</li>
+    <li><strong>Price.</strong> The cost per copy in HBAR, for example 12 HBAR.</li>
+    <li><strong>Max per wallet.</strong> For example, 3 copies per wallet.</li>
+    <li><strong>Drop banner.</strong> The image shown on your drop card and in promotions.</li>
+  </ul>
+
+  <h3>E.2 Choose a sale type</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Sale type</th><th>How it works</th><th>Good for</th></tr></thead>
+    <tbody>
+      <tr><td>Public</td><td>Open to everyone. First come, first served.</td><td>A simple, wide launch.</td></tr>
+      <tr><td>Whitelist</td><td>Only wallets on your approved list can mint. Think of it as a guest list.</td><td>Rewarding your most loyal fans.</td></tr>
+      <tr><td>FCFS (whitelist, then public)</td><td>Whitelisted wallets get early access. When that window ends, the drop opens to everyone automatically.</td><td>Priority for fans without excluding newcomers.</td></tr>
+      <tr><td>Dutch auction</td><td>The price starts high and falls over time. You set the start price, end price, how much it drops, and how often.</td><td>Letting the market find the right price.</td></tr>
+      <tr><td>Scheduled</td><td>Minting opens and closes at exact times you set.</td><td>Coordinated launch events.</td></tr>
+      <tr><td>Airdrop / Free claim</td><td>Price is 0 HBAR. Supply is reserved for a list of wallets.</td><td>Partnerships, giveaways, and special events.</td></tr>
+    </tbody></table></div>
+
+  <h3>E.3 Add your whitelist (only if you chose Whitelist or FCFS)</h3>
+  <ol class="steps">
+    <li><strong>Upload a file or paste wallet addresses.</strong><p>Upload a .csv, .txt, or .json file with one wallet per line, or paste addresses into the text box. Both Hedera addresses (like 0.0.12345) and EVM addresses (like 0xabc…) are accepted, and EVM addresses convert automatically.</p></li>
+    <li><strong>Check the automatic clean-up.</strong><p>ComicPad removes duplicates and flags invalid entries. You will see a summary such as: Valid wallets 1,248. Duplicates removed 17. Invalid addresses 4. Select the invalid count to review each problem line.</p></li>
+    <li><strong>Set your allocation rules.</strong><p>Choose a max per wallet for whitelisted buyers (for example, 2). You can also reserve part of the supply for them (for example, 500 copies), with the rest released to the public after the whitelist window closes.</p></li>
+    <li><strong>Select Save Whitelist.</strong><p>This locks the list to your drop.</p></li>
+  </ol>
+
+  <h3>E.4 Set the schedule</h3>
+  <p>Choose a start date and time and an end date and time, for example Dec 14 at 4:00 PM UTC to Dec 16 at 4:00 PM UTC. Your time zone is detected automatically so what you see is accurate. Once published, the schedule is enforced automatically, and no one, including you, needs to press a button to open or close the sale.</p>
+
+  <h3>E.5 Review and publish</h3>
+  <p>Check the summary carefully: Episode and rarity, supply, price, max per wallet, whitelist details, and your banner preview. Then select Publish Drop.</p>
+  <div class="caption">
+    <strong class="h">Publishing a drop is permanent</strong>
+    <p>You are about to publish this Drop to the Quiva Marketplace. This action:</p>
+    <ul><li>Locks supply and price</li><li>Deploys a sale contract</li><li>Cannot be undone</li></ul>
+  </div>
+  <div class="mock" data-mock>
+    <h4>Publish this Drop?</h4>
+    <p>This locks supply and price, deploys a sale contract, and can't be undone.</p>
+    <label><input type="checkbox"> I understand this action is irreversible.</label>
+    <label><input type="checkbox"> I agree to Quiva's Terms of Service.</label>
+    <button type="button" disabled>Publish Drop</button>
+  </div>
+  <p class="mock-cap">An illustration of the confirmation step. Both boxes must be ticked.</p>
+
+  <h3>What ComicPad creates for you</h3>
+  <ul>
+    <li><strong>A drop page</strong> with a title, live countdown timer, mint button, supply progress bar, and preview pages.</li>
+    <li><strong>A sale contract.</strong> This is a small automated program that runs your rules exactly as you set them: whitelist, price, supply, limits, and timing.</li>
+    <li><strong>A marketplace listing</strong> marked Upcoming or Live.</li>
+  </ul>
+
+  <h3>The life of a drop</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Status</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag">Draft</span></td><td>You're still setting it up. Only you can see it.</td></tr>
+      <tr><td><span class="tag y">Scheduled</span></td><td>Published and waiting for its start time.</td></tr>
+      <tr><td><span class="tag g">Live</span></td><td>Readers can mint right now.</td></tr>
+      <tr><td><span class="tag">Ended</span></td><td>The end time has passed.</td></tr>
+      <tr><td><span class="tag">Sold out</span></td><td>Every copy has been minted.</td></tr>
+      <tr><td><span class="tag">Cancelled</span></td><td>Only possible before you publish.</td></tr>
+    </tbody></table></div>
+  <p>If something needs fixing, ComicPad tells you plainly: for example, an invalid supply, an invalid schedule, a whitelist file problem, or a failed contract deployment. Each message comes with a way to retry or correct it, and never shows raw technical errors.</p>
+</section>
+
+<section class="chapter" id="c-earn">
+  <h2>Get paid: sales and royalties</h2>
+  <p class="intro">You earn in two ways, and the second one is what makes Quiva different.</p>
+  <div class="two">
+    <div class="card"><h3>Primary sales</h3><p>Every time a reader mints a copy from your listing or drop, you are paid. The split between you and any collaborators happens automatically, in the same moment as the sale.</p></div>
+    <div class="card"><h3>Secondary royalties</h3><p>Every time a collector resells one of your copies, you receive a percentage of that sale. This continues for as long as your work is traded.</p></div>
+  </div>
+  <h3>How royalties reach you</h3>
+  <p>You choose your royalty percentage during setup, and it locks permanently when you publish. From then on, the Hedera network itself collects and delivers it. Quiva doesn't hold your money and you never need to claim it.</p>
+  <ul>
+    <li><strong>Automatic.</strong> Your royalty arrives in your wallet at the moment of each resale.</li>
+    <li><strong>Hard to bypass.</strong> The royalty applies to every transfer of your token, including sales made outside Quiva. Even a gift transfer with no payment triggers a small fallback fee.</li>
+    <li><strong>Permanent.</strong> No marketplace can switch it off.</li>
+  </ul>
+  <h3>Worked example</h3>
+  <p>A collector resells one of your copies for 100 HBAR. Your royalty is set at 5%, and the marketplace fee is 2.5%.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Who</th><th>Receives</th></tr></thead>
+    <tbody>
+      <tr><td>You, the creator</td><td>5 HBAR, instantly</td></tr>
+      <tr><td>Quiva marketplace fee</td><td>2.5 HBAR</td></tr>
+      <tr><td>The seller</td><td>92.5 HBAR</td></tr>
+    </tbody></table></div>
+  <p>Your <strong>Earnings</strong> tab shows four sections: Primary sales, Secondary royalties, Studio subscriptions, and Withdrawals. Until users mint your comics you will see "Your earnings will appear once users mint your comics."</p>
+  <p class="hint">Fees are always shown before you confirm any action.</p>
+</section>
+
+<section class="chapter" id="c-grow">
+  <h2>Grow: analytics, team, and referrals</h2>
+  <div class="bubble"><p><strong>Pending confirmation.</strong> The current dashboard sidebar shows Quiva Studio, Collections, and Earnings. This section describes Analytics, Team, and Referral features from the original brief — confirm whether they're live before sharing this section with creators.</p></div>
+  <h3>Analytics</h3>
+  <p>Once your comics are published, the Analytics tab shows reads per episode, mint conversion (how many readers who viewed went on to buy), revenue per episode, secondary sales volume, and engagement trends. Before you publish you will see "Analytics will appear once your comics are published."</p>
+  <h3>Invite your team</h3>
+  <p>Comics are rarely made alone. Invite people by username and give each a role.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Role</th><th>Suited to</th></tr></thead>
+    <tbody>
+      <tr><td>Admin</td><td>Studio leads who manage the whole workspace.</td></tr>
+      <tr><td>Editor</td><td>People who manage and edit content.</td></tr>
+      <tr><td>Artist</td><td>Illustrators and colourists.</td></tr>
+      <tr><td>Writer</td><td>Story and script contributors.</td></tr>
+      <tr><td>Viewer</td><td>People who need to look but not change anything.</td></tr>
+    </tbody></table></div>
+  <p>If you see "User not found," check the username. If you see "This user already has a role," that person is already on your team. If someone tries something their role doesn't allow, they will see "You don't have permission to edit this content."</p>
+  <h3>Referrals and XP</h3>
+  <p>Your Referral tab holds your personal link. You earn XP when people join through it: 5 XP for a reader and 15 XP for a creator. Creating your profile earns 10 XP. See the collector guide for the full list of ways to earn XP.</p>
+</section>
+
+<section class="chapter" id="c-locked">
+  <h2>What you can and can't change</h2>
+  <p class="intro">Bookmark this table. It answers the question creators ask us most.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Stage</th><th>Who can see it</th><th>Can it be undone?</th><th>What's next</th></tr></thead>
+    <tbody>
+      <tr><td>Draft</td><td>Only you and your team</td><td><span class="tag g">Yes, keep editing</span></td><td>Finish and publish.</td></tr>
+      <tr><td>Published in ComicPad (off-chain)</td><td>Visible in ComicPad. Not tradable, not on the marketplace.</td><td><span class="tag g">Nothing permanent yet</span></td><td>Publish on-chain.</td></tr>
+      <tr><td>Published on-chain</td><td>In your ComicPad Library. Not for sale.</td><td><span class="tag y">No</span></td><td>List it or create a drop.</td></tr>
+      <tr><td>Listed on the marketplace</td><td>Anyone can buy it.</td><td><span class="tag y">No</span></td><td>Track sales and royalties.</td></tr>
+      <tr><td>Drop published</td><td>Shown as Upcoming or Live.</td><td><span class="tag y">No, and drops can't be edited</span></td><td>Watch minting progress.</td></tr>
+    </tbody></table></div>
+  <h3>Locked once you publish on-chain</h3>
+  <ul>
+    <li>Collection title, banner, and collaborator list</li>
+    <li>The revenue split between collaborators</li>
+    <li>Episode number, content files, and 3-page preview</li>
+    <li>Your royalty percentage</li>
+    <li>Supply limits</li>
+  </ul>
+  <p>Use drafts freely to get these right before you publish.</p>
+</section>
+
+<section class="chapter" id="c-help">
+  <h2>When something goes wrong</h2>
+  <p class="intro">Every error in ComicPad is written in plain language and offers a way forward. You will never be shown raw blockchain codes.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>You see</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>"We couldn't load your comics. Refresh or try again later."</td><td>Refresh the page. Your content is safe.</td></tr>
+      <tr><td>"Could not export asset."</td><td>Try exporting again, or choose another format.</td></tr>
+      <tr><td>"This format is not supported."</td><td>Convert your file to a supported format.</td></tr>
+      <tr><td>"Transaction failed. Please try again."</td><td>Your withdrawal didn't go through. Try again, and check your wallet connection.</td></tr>
+      <tr><td>"Unable to generate referral link. Please retry."</td><td>Select retry. If it persists, reconnect your wallet.</td></tr>
+      <tr><td>"Analytics unavailable right now."</td><td>Come back shortly. Your data is not affected.</td></tr>
+      <tr><td>A wallet transaction was rejected</td><td>You declined the request in your wallet. Nothing happened, and you can retry.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section class="chapter" id="c-check">
+  <h2>Pre-launch checklist</h2>
+  <p class="intro">Run through this before every permanent action.</p>
+  <div class="two">
+    <div class="card"><h3>Before publishing on-chain</h3>
+      <ul><li>Collection title is final and unique</li><li>Banner looks right on mobile and desktop</li><li>Collaborators are correct</li><li>Pages are in the right order</li><li>Preview pages are the ones you want readers to see</li><li>Royalty percentage is confirmed</li></ul></div>
+    <div class="card"><h3>Before listing or launching a drop</h3>
+      <ul><li>Rarity and supply are right, because they are permanent</li><li>Price is in HBAR and correct</li><li>Max per wallet makes sense</li><li>Whitelist is cleaned and saved</li><li>Start and end times are correct for your time zone</li><li>Drop banner is uploaded</li></ul></div>
+  </div>
+</section>
+</div>
+
+<!-- ====================================================== -->
+<!-- COLLECTOR GUIDE -->
+<!-- ====================================================== -->
+<div class="guide" id="g-collectors" role="tabpanel" aria-labelledby="t-collectors" hidden>
+
+<section class="hero">
+  <h1>Read it. Own it. Trade it. And the creator gets paid every time.</h1>
+  <p class="lede">This guide shows you how to find comics on the Quiva Marketplace, mint your own copy, and build a collection. No crypto experience needed. We explain every word the first time it appears.</p>
+  <div class="strip" role="list">
+    <div class="panel pn1" role="listitem"><span class="n">1</span><h3>Set up</h3><p>Connect a wallet and add a little HBAR.</p></div>
+    <div class="panel pn2" role="listitem"><span class="n">2</span><h3>Discover</h3><p>Browse collection, preview pages, and check drop times.</p></div>
+    <div class="panel pn3" role="listitem"><span class="n">3</span><h3>Mint</h3><p>Get your own numbered copy, delivered straight to your wallet.</p></div>
+    <div class="panel pn4" role="listitem"><span class="n">4</span><h3>Collect</h3><p>Read, keep, or trade. Creators are paid on every resale.</p></div>
+  </div>
+  <p class="audience">Written for comic and manga fans who are new to owning digital collectibles.</p>
+</section>
+
+<section class="chapter" id="k-first">
+  <h2>What owning a Quiva comic means</h2>
+  <p class="intro">On most comic apps, what you buy is a licence to read, and it can vanish if the platform changes or closes. On Quiva, you own a copy.</p>
+  <div class="two">
+    <div class="card"><h3>On most platforms</h3><ul><li>You rent access to read</li><li>You can't resell or transfer</li><li>The creator earns nothing when readers trade</li><li>Your library depends on the platform surviving</li></ul></div>
+    <div class="card"><h3>On Quiva</h3><ul><li>Your copy lives in your own wallet</li><li>You can keep it, gift it, or resell it</li><li>The creator earns a royalty on every resale</li><li>Your copy is stored on a public network, not only on Quiva's servers</li></ul></div>
+  </div>
+  <div class="bubble"><p><strong>What does "mint" mean?</strong> Minting is our word for buying a fresh copy directly from the creator. When you mint, a new numbered copy is created and delivered to your wallet.</p></div>
+</section>
+
+<section class="chapter" id="k-setup">
+  <h2>Before you begin</h2>
+  <p class="intro">Two things to have ready, and one you can do in a minute.</p>
+  <div class="two">
+    <div class="card"><h3>A wallet</h3><p>A wallet is your personal, secure account for holding your comics and your money. Quiva works with Hedera wallets such as HashPack and Blade. Your wallet gives you a private <strong>recovery phrase</strong>, a list of words that can restore your account. Keep it offline and never share it with anyone.</p></div>
+    <div class="card"><h3>Some HBAR</h3><p>HBAR is the digital currency of Hedera. Comic prices on Quiva are shown in HBAR. Have enough in your wallet to cover the price of your copy, plus a very small network fee for processing the purchase.</p></div>
+  </div>
+  <div class="card"><h3>A profile (worth 10 XP)</h3><p>Your profile is your identity on Quiva. Setting it up early also earns you your first XP, which counts toward future rewards. See "Earn XP while you collect" below.</p></div>
+  <div class="caption">
+    <strong class="h">Keep your recovery phrase private</strong>
+    <p>Quiva will never ask for your recovery phrase. Anyone who does is trying to steal from you.</p>
+  </div>
+</section>
+
+<section class="chapter" id="k-connect">
+  <h2>Connect your wallet and set up your profile</h2>
+  <ol class="steps">
+    <li><strong>Select Connect Wallet.</strong><p>You'll find it at the top of the marketplace.</p></li>
+    <li><strong>Choose your wallet and approve.</strong><p>Approving only shares your public address with Quiva. It doesn't spend anything.</p></li>
+    <li><strong>Complete your profile.</strong><p>If you see a "Profile Incomplete" badge on your snapshot card, select Complete Profile.</p></li>
+    <li><strong>Check your snapshot.</strong><p>Your XP balance, your rank on the leaderboard, and quick buttons to open your XP Dashboard or Referrals are all in one place.</p></li>
+  </ol>
+  <p>If you see "Wrong network detected. Switch to Hedera to continue," open your wallet's network settings and switch to Hedera.</p>
+</section>
+
+<section class="chapter" id="k-find">
+  <h2>Find something to collect</h2>
+  <p>Browse the marketplace by genre, by what's live now, or by what's coming soon. Two kinds of pages matter most:</p>
+  <ul>
+    <li><strong>A Collection page</strong> is a full comic or manga title. It shows the banner, the story, the genre tags, the creator and any collaborators, and a grid of Episodes.</li>
+    <li><strong>An Episode or drop page</strong> is where you preview and mint a single chapter.</li>
+  </ul>
+  <p>Before you buy, read the 3-page preview to check the art and story are for you. Creators with a <strong>Verified</strong> badge have been confirmed by Quiva. You can select a creator's name to see their profile, follow them, and browse their other work.</p>
+</section>
+
+<section class="chapter" id="k-page">
+  <h2>How to read a drop page</h2>
+  <p class="intro">Every drop page shows the same information in the same order, so once you have seen one, you have seen them all.</p>
+  <h3>The top of the page</h3>
+  <p>A full-width banner, the title in the form "Collection name, Episode number and title" (for example, <em>Galactic Ronin: Episode 3, Twin Blades</em>), and the creator with any collaborators.</p>
+  <h3>The status badge</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Badge</th><th>What it means</th><th>What you can do</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag y">Upcoming</span></td><td>Minting hasn't started.</td><td>Note the countdown and get your wallet ready.</td></tr>
+      <tr><td><span class="tag g">Live</span></td><td>Minting is open right now.</td><td>Mint if the details suit you.</td></tr>
+      <tr><td><span class="tag v">Whitelist only</span></td><td>Only pre-approved wallets can mint.</td><td>Check whether your wallet is on the list.</td></tr>
+      <tr><td><span class="tag">Sold out</span></td><td>Every copy has been minted.</td><td>Look for copies on the secondary market.</td></tr>
+      <tr><td><span class="tag">Ended</span></td><td>The sale window has closed.</td><td>Look for copies on the secondary market.</td></tr>
+    </tbody></table></div>
+  <h3>Mint phases</h3>
+  <p>Some drops run in phases. Each phase lists its start time, a countdown, its price, and who can take part.</p>
+  <ul>
+    <li><strong>Whitelist mint.</strong> For wallets on the creator's guest list. If yours is on it you will see a green "You're Whitelisted" tag.</li>
+    <li><strong>FCFS early access.</strong> First come, first served, with a set number of copies.</li>
+    <li><strong>Public mint.</strong> Open to everyone.</li>
+  </ul>
+  <p>Each phase has its own Mint button, which stays disabled until that phase begins.</p>
+  <h3>Price, supply, and your limits</h3>
+  <ul>
+    <li><strong>Price per copy</strong> in HBAR.</li>
+    <li><strong>Total supply</strong> and a live <strong>minted count</strong> with a progress bar from 0 to 100%.</li>
+    <li><strong>Your wallet limit</strong>, for example "You minted 1/3 allowed."</li>
+  </ul>
+  <h3>Further down</h3>
+  <ul>
+    <li>The story summary, genre tags, and content rating.</li>
+    <li>Rarity options and any special bonuses or unlockables.</li>
+    <li>Preview pages (tap any thumbnail to enlarge) and a trailer if one is attached.</li>
+    <li>A short creator profile with a Follow button.</li>
+    <li><strong>Activity and mint history:</strong> who minted, when, at what price, with a link to each transaction. You can filter by mints, transfers, and listings.</li>
+    <li>Drop details: the smart contract ID, the creator's royalty percentage, social links, and a Report infringement button.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="k-mint">
+  <h2>How to mint your copy</h2>
+  <ol class="steps">
+    <li><strong>Open the drop or listing.</strong></li>
+    <li><strong>Check the details.</strong><p>Look at the rarity, price, your wallet limit, and which phase is active.</p></li>
+    <li><strong>Connect your wallet</strong> if you haven't already.</li>
+    <li><strong>Select Mint.</strong><p>The button is only active when you are eligible and minting is open.</p></li>
+    <li><strong>Approve in your wallet.</strong><p>Your wallet shows the price and the small network fee. Check them and approve.</p></li>
+    <li><strong>You own it.</strong><p>Within a few seconds your copy is in your wallet and your mint appears in the drop's activity table.</p></li>
+  </ol>
+  <div class="caption">
+    <strong class="h">Minting is final</strong>
+    <p>Purchases on a blockchain can't be reversed, so review the price and rarity before you approve. If you change your mind later, you can resell your copy on the marketplace.</p>
+  </div>
+  <h3>What the Mint button is telling you</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Button</th><th>Meaning</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>Connect Wallet</td><td>No wallet is connected.</td><td>Connect one to continue.</td></tr>
+      <tr><td>Mint (active)</td><td>You can mint right now.</td><td>Select it and approve in your wallet.</td></tr>
+      <tr><td>Mint Not Started (disabled)</td><td>The phase hasn't begun.</td><td>Wait for the countdown to finish.</td></tr>
+      <tr><td>Whitelist Only: You're not on WL (disabled)</td><td>Your wallet isn't on the guest list.</td><td>Wait for the public phase, if there is one.</td></tr>
+      <tr><td>Sold Out</td><td>No copies left.</td><td>Browse the secondary market.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section class="chapter" id="k-types">
+  <h2>Ways a drop can work</h2>
+  <p class="intro">Creators choose how their drop is sold. Here is what each type means for you.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Type</th><th>What it means for you</th></tr></thead>
+    <tbody>
+      <tr><td>Public mint</td><td>Anyone can mint, first come, first served. Be ready when it opens.</td></tr>
+      <tr><td>Whitelist only</td><td>Only wallets on the creator's list can mint. Follow creators to hear how to get on the list.</td></tr>
+      <tr><td>FCFS (whitelist, then public)</td><td>Listed wallets mint first. Later, everyone can. The switch happens automatically.</td></tr>
+      <tr><td>Dutch auction</td><td>The price starts high and falls at regular steps. Mint when the price feels right, but remember copies can sell out before it drops further.</td></tr>
+      <tr><td>Scheduled mint</td><td>Opens and closes at exact times. Check the countdown and your time zone.</td></tr>
+      <tr><td>Airdrop / Free claim</td><td>Free for eligible wallets, at 0 HBAR. Check that your wallet is on the list.</td></tr>
+    </tbody></table></div>
+  <p>Some creators skip drops and simply <strong>list</strong> an episode. In that case it's available at a fixed price, at any time, and you can mint instantly.</p>
+</section>
+
+<section class="chapter" id="k-rarity">
+  <h2>Rarity: how many copies exist</h2>
+  <p>Every Episode can come in up to three rarities. Rarity tells you the <strong>maximum number of copies that can ever exist</strong>. Fewer copies generally means more collectible. Each rarity of an Episode is sold separately, so you'll see them as separate drops or listings.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Rarity</th><th>Copies</th><th>What to expect</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag y">Legendary</span></td><td>1 to 5,000</td><td>Highest scarcity. Each copy has its own serial number.</td></tr>
+      <tr><td><span class="tag v">Epic</span></td><td>1 to 8,000</td><td>A middle tier for dedicated fans.</td></tr>
+      <tr><td><span class="tag g">Common</span></td><td>Unlimited</td><td>The most accessible way to own the story.</td></tr>
+    </tbody></table></div>
+  <div class="bubble"><p><strong>Good to know.</strong> Supply limits are locked when a creator publishes. No one, including the creator, can create extra copies later.</p></div>
+</section>
+
+<section class="chapter" id="k-after">
+  <h2>After you mint</h2>
+  <ul>
+    <li><strong>Your copy is yours.</strong> It's held in your own wallet, not on a Quiva account that someone else controls.</li>
+    <li><strong>Read it any time.</strong> Head to the Episode to read. Reading a comic all the way to the final page also counts toward your XP tasks.</li>
+    <li><strong>Keep it, gift it, or trade it.</strong> It is a collectible you can hold or resell.</li>
+    <li><strong>Follow the creator.</strong> You will hear about new episodes and drops.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="k-trade">
+  <h2>Trading on the secondary market</h2>
+  <p class="intro">Every minted copy can be bought and sold between collectors. Each copy appears as a trading card.</p>
+  <h3>What you'll see on a card</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Detail</th><th>What it tells you</th></tr></thead>
+    <tbody>
+      <tr><td>Owner</td><td>The wallet that holds the copy today.</td></tr>
+      <tr><td>Listing price</td><td>What the owner is asking for it now.</td></tr>
+      <tr><td>Last sale</td><td>What it most recently sold for.</td></tr>
+      <tr><td>Rarity tag</td><td>Legendary, Epic, or Common.</td></tr>
+      <tr><td>Floor price</td><td>The lowest current asking price across all listings for that Episode. It's a quick guide to what the cheapest copy costs.</td></tr>
+      <tr><td>Active listings</td><td>How many copies are for sale right now.</td></tr>
+      <tr><td>Likes and views</td><td>How much attention the item is getting.</td></tr>
+    </tbody></table></div>
+  <h3>Buying a copy</h3>
+  <p>Choose a listing, check the price and rarity, select buy, and approve in your wallet. The copy moves to your wallet within seconds.</p>
+  <h3>Selling a copy</h3>
+  <p>Choose the item from your collection, set your asking price in HBAR, and confirm in your wallet. When someone buys it, the payment arrives in your wallet.</p>
+  <h3>Where the money goes</h3>
+  <p>Creators are paid a royalty on every resale. It's collected automatically by the Hedera network at the moment of sale. For example, on a 100 HBAR sale with a 5% creator royalty and a 2.5% marketplace fee:</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Who</th><th>Receives</th></tr></thead>
+    <tbody>
+      <tr><td>Creator</td><td>5 HBAR</td></tr>
+      <tr><td>Quiva marketplace fee</td><td>2.5 HBAR</td></tr>
+      <tr><td>Seller</td><td>92.5 HBAR</td></tr>
+    </tbody></table></div>
+  <p class="hint">The creator's royalty percentage is shown on each drop page, and fees are shown before you confirm.</p>
+</section>
+
+<section class="chapter" id="k-xp">
+  <h2>Earn XP while you collect</h2>
+  <p class="intro">XP (experience points) rewards you for taking part in Quiva during the testnet stage. Open your XP Dashboard to see tasks, your rank, and the leaderboard.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Task</th><th>XP</th><th>How it works</th></tr></thead>
+    <tbody>
+      <tr><td>Create your profile</td><td>+10</td><td>One time. Select Complete Profile.</td></tr>
+      <tr><td>Mint 10 comics</td><td>+100</td><td>Progress shown as Minted 0 / 10.</td></tr>
+      <tr><td>Read 5 comics completely</td><td>+100</td><td>Counts when you reach the final page.</td></tr>
+      <tr><td>Social tasks</td><td>+2 each</td><td>Follow Quiva on Twitter, join the Telegram, join the Discord, or retweet the pinned post.</td></tr>
+      <tr><td>Weekly community activity</td><td>+20</td><td>Take part in the community each week.</td></tr>
+      <tr><td>Post on Twitter with @Quiva</td><td>+20</td><td>Submit a link as proof.</td></tr>
+      <tr><td>Attend an AMA or Space</td><td>+25</td><td>Join a live session.</td></tr>
+      <tr><td>Invite a reader</td><td>+5</td><td>They join through your referral link.</td></tr>
+      <tr><td>Invite a creator</td><td>+15</td><td>They join through your referral link.</td></tr>
+    </tbody></table></div>
+  <h3>Leaderboards and badges</h3>
+  <p>The <strong>Global leaderboard</strong> ranks everyone by XP and highlights your own row. The <strong>Friends leaderboard</strong> shows people you referred. As you go, you can unlock badges such as Bronze Reader, Silver Collector, Gold Referrer, and Super Creator, with progress bars showing what's next.</p>
+  <h3>What XP is for</h3>
+  <ul>
+    <li>At mainnet launch, your XP converts to <strong>Q Points</strong> at a one-to-one rate.</li>
+    <li>Q Points can be used toward mint discounts and to unlock exclusive content or early releases. They cover part of a price, and the rest is paid in HBAR.</li>
+    <li>Q Points may expire if left unused for too long, so use them.</li>
+    <li>Your activity on ComicPad and the marketplace also shapes your Q Token airdrop at the Token Generation Event.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="k-safe">
+  <h2>Stay safe</h2>
+  <ul>
+    <li><strong>Never share your recovery phrase.</strong> Not with support, not with a friend, not with a website.</li>
+    <li><strong>Read your wallet pop-up every time.</strong> Check the price and what you are approving before you confirm.</li>
+    <li><strong>Look for the Verified badge</strong> and check the creator's profile if a collection looks unfamiliar.</li>
+    <li><strong>Use official Quiva links only.</strong> Be careful with links sent in direct messages.</li>
+    <li><strong>Spot copied work?</strong> Use the Report infringement button on the drop page.</li>
+    <li><strong>Only spend what you're comfortable with.</strong> Collectible values can go up and down.</li>
+  </ul>
+</section>
+
+<section class="chapter" id="k-help">
+  <h2>When something goes wrong</h2>
+  <div class="tblwrap"><table>
+    <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>The Mint button is greyed out</td><td>Check the status badge and countdown. Minting may not have started, or the phase may be whitelist only.</td></tr>
+      <tr><td>Wallet won't connect</td><td>Use a Hedera-compatible wallet and make sure it's set to Hedera.</td></tr>
+      <tr><td>Mint didn't complete</td><td>You may have declined the wallet request or run low on HBAR. Check your balance and try again.</td></tr>
+      <tr><td>Drop is sold out or ended</td><td>Look for copies on the secondary market.</td></tr>
+      <tr><td>Your XP didn't update</td><td>Give it a moment, then refresh your XP Dashboard. Notifications show each reward as it lands.</td></tr>
+    </tbody></table></div>
+</section>
+</div>
+
+<!-- ====================================================== -->
+<!-- GLOSSARY -->
+<!-- ====================================================== -->
+<div class="guide" id="g-glossary" role="tabpanel" aria-labelledby="t-glossary" hidden>
+<section class="hero">
+  <h1>Plain-language glossary</h1>
+  <p class="lede">Every technical word you might meet on Quiva, explained without jargon.</p>
+</section>
+<section class="chapter" id="x-terms">
+  <h2>Everyday Quiva terms</h2>
+  <dl class="gl">
+    <dt>Collection</dt><dd>A full comic or manga title. On other marketplaces this is called a Collection.</dd>
+    <dt>Episode</dt><dd>A single chapter of a Collection. It is what readers read, mint, collect, and trade.</dd>
+    <dt>Rarity</dt><dd>An edition tier (Legendary, Epic, or Common) that sets the maximum number of copies that can exist.</dd>
+    <dt>Supply</dt><dd>The number of copies available in a listing or drop. It is permanent once published.</dd>
+    <dt>Create</dt><dd>Building content in ComicPad. Private and editable.</dd>
+    <dt>Publish (on-chain)</dt><dd>Permanently recording your Collection and Episode on Hedera, with ownership assigned to your wallet.</dd>
+    <dt>List</dt><dd>Putting a published Episode on the marketplace at a fixed price, available any time.</dd>
+    <dt>Drop</dt><dd>A sale campaign with a schedule or rules, and its own page and countdown.</dd>
+    <dt>Mint</dt><dd>What a reader does when they buy a fresh copy. A new numbered copy is created for them.</dd>
+    <dt>Whitelist</dt><dd>A guest list of wallets allowed to mint early or exclusively.</dd>
+    <dt>FCFS</dt><dd>First come, first served. On Quiva, it usually means whitelisted wallets mint first and then the drop opens to everyone.</dd>
+    <dt>Dutch auction</dt><dd>A sale where the price starts high and drops in steps until the copies sell.</dd>
+    <dt>Airdrop / Free claim</dt><dd>A free distribution of copies to a chosen list of wallets.</dd>
+    <dt>Royalty</dt><dd>A percentage of every resale that goes back to the creator, automatically.</dd>
+    <dt>Floor price</dt><dd>The lowest price at which a copy is currently listed for sale.</dd>
+    <dt>Serial number</dt><dd>The unique number of an individual copy, for example 47 of 5,000.</dd>
+    <dt>Primary market</dt><dd>Where copies are sold for the first time, straight from the creator.</dd>
+    <dt>Secondary market</dt><dd>Where collectors resell copies to each other.</dd>
+  </dl>
+</section>
+<section class="chapter" id="x-tech">
+  <h2>Technology terms</h2>
+  <dl class="gl">
+    <dt>Wallet</dt><dd>A secure personal account that holds your comics and money and proves who you are. Examples for Hedera include HashPack and Blade.</dd>
+    <dt>Recovery phrase</dt><dd>The private list of words that can restore your wallet. Never share it.</dd>
+    <dt>Hedera</dt><dd>The public network Quiva is built on. It records ownership and payments, with fast confirmation and very low fees.</dd>
+    <dt>HBAR</dt><dd>Hedera's digital currency. Prices on Quiva are shown in HBAR.</dd>
+    <dt>On-chain</dt><dd>Recorded permanently on a public network rather than only in a company's private database.</dd>
+    <dt>Off-chain</dt><dd>Kept privately inside ComicPad. Fully editable.</dd>
+    <dt>Network fee</dt><dd>A very small charge paid to the network for processing a transaction.</dd>
+    <dt>Smart contract</dt><dd>A small automated program that carries out agreed rules exactly, such as a sale's price, limits, and timing.</dd>
+    <dt>KiloScribe</dt><dd>The service Quiva uses to record and index comic details on Hedera.</dd>
+    <dt>IPFS and Pinata</dt><dd>A shared network of storage servers, and the service that keeps your comic files on it, so they don't depend on a single company.</dd>
+    <dt>Testnet</dt><dd>A practice version of the network used before the real launch.</dd>
+    <dt>Mainnet</dt><dd>The live, real version of the network.</dd>
+    <dt>XP</dt><dd>Experience points earned for taking part in Quiva during testnet.</dd>
+    <dt>Q Points</dt><dd>What XP becomes at mainnet. They can be used toward mint discounts and exclusive content.</dd>
+    <dt>Q Token ($Q)</dt><dd>Quiva's utility token, used inside the Quiva ecosystem.</dd>
+  </dl>
+</section>
+</div>
+
+<p class="foot">Quiva Walkthrough Guides. For creators and collectors on ComicPad and the Quiva Marketplace.</p>
+</main>
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('[data-tab]');
+  var guides={creators:'g-creators',collectors:'g-collectors',glossary:'g-glossary'};
+  var titles={creators:'For creators',collectors:'For collectors',glossary:'Glossary'};
+  var toc=document.getElementById('toc'), tocm=document.getElementById('toc-m');
+  var observer=null;
+
+  function buildToc(id){
+    toc.innerHTML=''; tocm.innerHTML='';
+    var chapters=document.querySelectorAll('#'+id+' .chapter');
+    chapters.forEach(function(ch){
+      var h=ch.querySelector('h2'); if(!h||!ch.id) return;
+      [toc,tocm].forEach(function(list){
+        var li=document.createElement('li'), a=document.createElement('a');
+        a.href='#'+ch.id; a.textContent=h.textContent; a.setAttribute('data-target',ch.id);
+        li.appendChild(a); list.appendChild(li);
+      });
+    });
+    tocm.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){ document.querySelector('.toc-m').removeAttribute('open'); });
+    });
+    if(observer) observer.disconnect();
+    if('IntersectionObserver' in window){
+      observer=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            toc.querySelectorAll('a').forEach(function(a){
+              a.classList.toggle('on',a.getAttribute('data-target')===e.target.id);
+            });
+          }
+        });
+      },{rootMargin:'-15% 0px -75% 0px'});
+      chapters.forEach(function(ch){ if(ch.id) observer.observe(ch); });
+    }
+  }
+
+  function show(name,scrollTop){
+    if(!guides[name]) name='creators';
+    Object.keys(guides).forEach(function(k){
+      var el=document.getElementById(guides[k]);
+      el.hidden=(k!==name);
+      var t=document.getElementById('t-'+k);
+      t.setAttribute('aria-selected',k===name?'true':'false');
+      t.tabIndex=(k===name)?0:-1;
+    });
+    document.title='Quiva Walkthrough Guides: '+titles[name];
+    buildToc(guides[name]);
+    if(scrollTop) window.scrollTo(0,0);
+  }
+
+  document.querySelectorAll('.tab, .brand').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      var name=b.getAttribute('data-tab');
+      show(name,true);
+      try{ history.replaceState(null,'','#'+name); }catch(err){}
+    });
+  });
+  var tl=document.querySelector('.tabs');
+  tl.addEventListener('keydown',function(e){
+    var order=['creators','collectors','glossary'];
+    var cur=order.findIndex(function(k){return document.getElementById('t-'+k).getAttribute('aria-selected')==='true';});
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      var next=order[(cur+(e.key==='ArrowRight'?1:order.length-1))%order.length];
+      show(next,true); document.getElementById('t-'+next).focus(); e.preventDefault();
+    }
+  });
+
+  document.querySelectorAll('[data-mock]').forEach(function(m){
+    var boxes=m.querySelectorAll('input[type=checkbox]'), btn=m.querySelector('button');
+    boxes.forEach(function(b){
+      b.addEventListener('change',function(){
+        btn.disabled=!Array.prototype.every.call(boxes,function(x){return x.checked;});
+      });
+    });
+  });
+
+  var start=(location.hash||'').replace('#','');
+  if(guides[start]) show(start,false);
+  else {
+    show('creators',false);
+    if(start && document.getElementById(start)){
+      var g=document.getElementById(start).closest('.guide');
+      if(g){ show(Object.keys(guides).filter(function(k){return guides[k]===g.id;})[0],false); document.getElementById(start).scrollIntoView(); }
+    }
+  }
+})();
+</script>
+</body>
+</html>
